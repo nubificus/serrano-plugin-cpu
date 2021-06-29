@@ -23,6 +23,8 @@ set(SOURCES
     src/vaccel.c
     src/gemm.c
     src/gemm.h
+    src/minmax.c
+    src/minmax.h
 )
 
 # export rpath for libraries when installing
@@ -31,6 +33,7 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 add_library(vaccel-serrano SHARED ${SOURCES})
 target_compile_features(vaccel-serrano PUBLIC)
 target_include_directories(vaccel-serrano PRIVATE ${VACCELRT_INCLUDE})
+target_link_libraries(vaccel-serrano m)
 
 # Setup `make install`
 include(GNUInstallDirs)
