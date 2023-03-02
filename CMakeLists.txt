@@ -30,9 +30,11 @@ set(SOURCES
 # export rpath for libraries when installing
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+add_subdirectory(version)
 add_library(vaccel-serrano-cpu SHARED ${SOURCES})
+add_dependencies(vaccel-serrano-cpu version)
 target_compile_features(vaccel-serrano-cpu PUBLIC)
-target_include_directories(vaccel-serrano-cpu PRIVATE ${VACCELRT_INCLUDE})
+target_include_directories(vaccel-serrano-cpu PRIVATE ${VACCELRT_INCLUDE} ${CMAKE_BINARY_DIR}/version)
 target_link_libraries(vaccel-serrano-cpu m)
 
 # Setup `make install`
